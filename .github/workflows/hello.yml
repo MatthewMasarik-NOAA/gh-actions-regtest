@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: setup-spack
+        shell: bash
         run: |
           sudo apt install cmake
           cmake --version
