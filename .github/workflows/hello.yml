@@ -19,6 +19,6 @@ jobs:
       - name: setup-spack
         shell: bash
         run: |
-          sudo apt install cmake
+          sudo apt-get install cmake
           cmake --version
-          bash env
+          sudo env
