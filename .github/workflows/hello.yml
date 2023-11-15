@@ -46,7 +46,7 @@ jobs:
           cmake --version
           git clone -c feature.manyFiles=true https://github.com/JCSDA/spack.git
           source spack/share/spack/setup-env.sh
-          spack env create ww3-gnu gh-actions-regtest/model/ci/spack_gnu_serial.yaml
+          spack env create ww3-gnu ww3/model/ci/spack_gnu_serial.yaml
           spack env activate ww3-gnu
           spack compiler find
           spack external find cmake
