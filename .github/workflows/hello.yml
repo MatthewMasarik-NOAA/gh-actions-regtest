@@ -21,3 +21,4 @@ jobs:
         run: |
           sudo apt install cmake
           cmake --version
+          bash env
