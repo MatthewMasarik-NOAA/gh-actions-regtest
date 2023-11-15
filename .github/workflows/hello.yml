@@ -22,5 +22,9 @@ jobs:
           sudo apt-get install cmake
           cmake --version
           sudo env
-          spack ~/.spack work_regtest
+          git clone -c feature.manyFiles=true https://github.com/NOAA-EMC/WW3.git
+          git clone -c feature.manyFiles=true https://github.com/JCSDA/spack.git
+          ls
+          source spack/share/spack/setup-env.sh
+          spack env create ww3-gnu ww3/model/ci/spack_gnu.yaml
 
