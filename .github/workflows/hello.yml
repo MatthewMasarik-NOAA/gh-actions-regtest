@@ -22,3 +22,5 @@ jobs:
           sudo apt-get install cmake
           cmake --version
           sudo env
+          spack ~/.spack work_regtest
+
