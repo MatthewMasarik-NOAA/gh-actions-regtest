@@ -12,3 +12,11 @@ jobs:
     steps:
       - name: say-hello
         run: echo "Hello, Actions world!"
+
+  setup-spack:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: setup-spack
+        run: |
+          sudo apt install cmake
+          cmake --version
