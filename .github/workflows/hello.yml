@@ -6,25 +6,45 @@ on:
     branches:
      - main
 
+env:
+  cache_key: gnu01
+  CC: gcc-10
+  FC: gfortran-10
+  CXX: g++-10
+
 jobs:
-  hello-actions:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: say-hello
-        run: echo "Hello, Actions world!"
+#  hello-actions:
+#    runs-on: ubuntu-20.04
+#    steps:
+#      - name: say-hello
+#        run: echo "Hello, Actions world!"
 
   setup-spack:
     runs-on: ubuntu-20.04
     steps:
+      - name: download-ww3
+        if: steps.cache-env.outputs.cache-hit != 'true'
+        uses: actions/checkout@v3
+        with:
+          path: ww3
+
+      - name: cache-env
+        id: cache-env
+        uses: actions/cache@v3
+        with:
+          path: |
+            spack
+            ~/.spack
+            work
+          key: spack-${{ runner.os }}-${{ env.cache_key }}-${{ hashFiles('ww3/model/ci/spack_gnu_serial.yaml') }}
+          
       - name: setup-spack
+        if: steps.cache-env.outputs.cache-hit != 'true'
         shell: bash
         run: |
           sudo apt-get install cmake
           cmake --version
-          sudo env
-          git clone -c feature.manyFiles=true https://github.com/MatthewMasarik-NOAA/gh-actions-regtest.git
           git clone -c feature.manyFiles=true https://github.com/JCSDA/spack.git
-          ls *
           source spack/share/spack/setup-env.sh
           spack env create ww3-gnu gh-actions-regtest/model/ci/spack_gnu_serial.yaml
           spack env activate ww3-gnu
@@ -32,6 +52,6 @@ jobs:
           spack external find cmake
           cmake --version
           spack concretize
-          spack install --dirty
+          spack install --dirty -v --fail-fast
           sudo env
           
