@@ -20,7 +20,7 @@ jobs:
 #        run: echo "Hello, Actions world!"
 
   setup-spack:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: download-ww3
         if: steps.cache-env.outputs.cache-hit != 'true'
