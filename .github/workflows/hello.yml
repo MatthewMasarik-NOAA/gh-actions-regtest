@@ -40,7 +40,6 @@ jobs:
           
       - name: setup-spack
         if: steps.cache-env.outputs.cache-hit != 'true'
-        shell: bash
         run: |
           sudo apt-get install cmake
           cmake --version
