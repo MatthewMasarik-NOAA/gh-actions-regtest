@@ -1,10 +1,10 @@
 name: Hello Regtest
 
-# on: 
-#  workflow_dispatch:
-#  push:
-#    branches:
-#     - main
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+     - gh-regtest
 
 env:
   cache_key: gnu01
