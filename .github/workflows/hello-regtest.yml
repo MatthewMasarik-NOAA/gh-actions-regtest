@@ -103,11 +103,10 @@ jobs:
           source spack/share/spack/setup-env.sh
           spack env activate ww3-gnu
           set -x
-          cd ww3
-          export CC=mpicc
-          export FC=mpif90
+          cd ww3/regtests
+          #export CC=mpicc
+          #export FC=mpif90
           export OASISDIR=${GITHUB_WORKSPACE}/work_oasis3-mct
-          mkdir build && cd build
           pwd
           echo "${GITHUB_WORKSPACE}"
           export LD_LIBRARY_PATH="/home/runner/work/WW3/WW3/spack/var/spack/environments/ww3-gnu/.spack-env/view/:$LD_LIBRARY_PATH"
